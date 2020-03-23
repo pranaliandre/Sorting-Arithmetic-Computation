@@ -13,3 +13,6 @@ result2=`echo "scale=2; $((number1*number2+number3))" | bc`
 
 #compute c+a/b
 result3=`echo "scale=2; $((number3+number1/number2))" | bc`
+
+#compute a%b+c
+result4=`echo "scale=2; $((number1%number2+number3))" | bc`
