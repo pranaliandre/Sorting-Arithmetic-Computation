@@ -7,3 +7,6 @@ read -p "Enter the third number: " number3
 
 #compute
 result1=`echo "scale=2; $((number1+number2*number3))" | bc`
+
+#comput a*b+c
+result2=`echo "scale=2; $((number1*number2+number3))" | bc`
