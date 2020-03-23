@@ -1,7 +1,14 @@
 #!/bin/bash -x
+#variable
+arrayCount=0
 #initialising a dictionary
 declare -A dictResult
+
+#initialising an array
+declare -A arrayResult
+
 echo "Welcome"
+
 #Take three input from user
 read -p "Enter the first number: " number1
 read -p "Enter the second number: " number2
@@ -22,5 +29,13 @@ dictResult[3]=$result3 #stroing result in dicionary
 #compute a%b+c
 result4=`echo "scale=2; $((number1%number2+number3))" | bc`
 dictResult[4]=$result4 #storing result in dictionary
+
 #display all value with key
 echo "${!dictResult[@]}" value="${dictResult[@]}"
+
+#
+for key in ${!dictResult[@]}
+do
+	arrayResult[((arrayCount++))]=${dictResult[$key]}		
+	echo "${arrayResult[@]}"
+done
