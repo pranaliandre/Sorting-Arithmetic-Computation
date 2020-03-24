@@ -1,6 +1,4 @@
 #!/bin/bash -x
-#variable
-arrayCount=0
 #initialising a dictionary
 declare -A dictResult
 
@@ -33,9 +31,30 @@ dictResult[4]=$result4 #storing result in dictionary
 #display all value with key
 echo "${!dictResult[@]}" value="${dictResult[@]}"
 
-#
+#strore in array
+
 for key in ${!dictResult[@]}
 do
-	arrayResult[((arrayCount++))]=${dictResult[$key]}		
-	echo "${arrayResult[@]}"
-done
+	arrayResult[$key]=${dictResult[$key]}
+done		
+echo "${arrayResult[@]}" 
+
+# main function of sorted in descending order
+function sortDes() {
+	#local variable
+	local tempArray=("$@")
+	for (( i=1;i<=${#tempArray[@]};i++ ))
+	do
+		for (( j=$((i+1));j<=${#tempArray[@]};j++ ))
+		do
+			if [[ ${tempArray[$i]} -lt ${tempArray[$j]} ]]
+			then
+				temp=${tempArray[$i]}
+				tempArray[$i]=${tempArray[$j]}
+				tempArray[$j]=$temp
+			fi
+		done
+	done
+	echo "sorted in descending order ${tempArray[@]}"
+}
+sortDes ${arrayResult[@]}
