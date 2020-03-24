@@ -1,5 +1,5 @@
-#!/bin/bash -x
-#initialising a dictionary
+#!/bin/bash -x 
+initialising a dictionary
 declare -A dictResult
 
 #initialising an array
@@ -39,9 +39,8 @@ do
 done		
 echo "${arrayResult[@]}" 
 
-# main function of sorted in descending order
+#function of sorted in descending order
 function sortDes() {
-	#local variable
 	local tempArray=("$@")
 	for (( i=1;i<=${#tempArray[@]};i++ ))
 	do
@@ -58,3 +57,21 @@ function sortDes() {
 	echo "sorted in descending order ${tempArray[@]}"
 }
 sortDes ${arrayResult[@]}
+
+#main function of sorted in ascending order
+function sortAsc(){
+	for (( i=1;i<=${#arrayResult[@]};i++ ))
+	do
+		for (( j=$((i+1));j<=${#arrayResult[@]};j++ ))
+		do
+			if [[ ${arrayResult[$i]} -gt ${arrayResult[$j]} ]]
+			then
+				temp=${arrayResult[$i]}
+				arrayResult[$i]=${arrayResult[$j]}
+				arrayResult[$j]=$temp
+			fi
+		done
+	done
+	echo "sorted in asending order ${arrayResult[@]}"
+}
+sortAsc ${arrayResult[@]}
